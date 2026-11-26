@@ -50,8 +50,9 @@ public class BuildingPlacer : MonoBehaviour
             return;
         }
 
-        GameObject building = Instantiate(selected.prefab, cell.Center, FacingCamera(), buildingsParent);
-        grid.Occupy(cell, building, selected);
+        Building building = Instantiate(selected.prefab, cell.Center, FacingCamera(), buildingsParent);
+        building.Init(selected);
+        grid.Occupy(cell, building);
     }
 
     private void UpgradeHovered()
@@ -66,26 +67,26 @@ public class BuildingPlacer : MonoBehaviour
 
     private void Upgrade(GridCell cell)
     {
-        BuildingData data = cell.BuildingData;
+        Building building = cell.Building;
 
-        if (cell.Level - 1 >= data.upgrades.Count)
+        if (building.Level - 1 >= building.Data.upgrades.Count)
         {
             return;
         }
 
-        BuildingUpgrade upgrade = data.upgrades[cell.Level - 1];
-        
+        BuildingUpgrade upgrade = building.Data.upgrades[building.Level - 1];
+
         if (!resources.TrySpend(upgrade.cost))
         {
             return;
         }
 
-        cell.Level++;
-        cell.TotalSpent += upgrade.cost;
+        building.Level++;
+        building.TotalSpent += upgrade.cost;
 
-        if (upgrade.mesh == null) return;
-        
-        cell.Building.GetComponent<MeshFilter>().mesh = upgrade.mesh;
+        if (upgrade.mesh == null || building.MeshFilter == null) return;
+
+        building.MeshFilter.mesh = upgrade.mesh;
     }
 
     private Quaternion FacingCamera()
@@ -106,8 +107,8 @@ public class BuildingPlacer : MonoBehaviour
 
         if (cell == null || !cell.IsOccupied || constructionBar.IsPointerOverBar(mousePosition)) return;
         
-        resources.AddMoney(cell.TotalSpent / 2);
-        Destroy(cell.Building);
+        resources.AddMoney(cell.Building.TotalSpent / 2);
+        Destroy(cell.Building.gameObject);
         grid.Free(cell);
     }
 }

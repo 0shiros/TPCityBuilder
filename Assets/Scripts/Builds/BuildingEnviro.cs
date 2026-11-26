@@ -2,15 +2,11 @@ using UnityEngine;
 
 public class BuildingEnviro : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [Tooltip("Ajouté au revenu par habitant des maisons dans le rayon.")]
+    [SerializeField] private int incomeBonusPerCitizen = 25;
+    [Tooltip("En cases, diagonales comprises.")]
+    [SerializeField] private int radius = 1;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public int IncomeBonusPerCitizen => incomeBonusPerCitizen;
+    public int Radius => radius;
 }

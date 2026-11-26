@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 1547229158952546765}
   - component: {fileID: 5739031939602445448}
   - component: {fileID: 2400835862387873473}
+  - component: {fileID: -8334485486350330122}
+  - component: {fileID: 7000000000000000003}
   m_Layer: 0
   m_Name: Fountain
   m_TagString: Untagged
@@ -91,3 +93,35 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &-8334485486350330122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8919437522477240705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a524e42854ac45641b4fdda7ca2196f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingEnviro
+  incomeBonusPerCitizen: 25
+  radius: 1
+--- !u!114 &7000000000000000003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8919437522477240705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 885ac50d7db2b2748b43987c46fcf95d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Building
+  habitation: {fileID: 0}
+  enviro: {fileID: -8334485486350330122}
+  meshFilter: {fileID: 5739031939602445448}
+  data: {fileID: 11400000, guid: 640ee287960f671479b9dc906f492c2c, type: 2}
+  level: 0
+  totalSpent: 0

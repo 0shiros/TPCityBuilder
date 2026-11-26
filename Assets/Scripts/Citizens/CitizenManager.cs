@@ -5,20 +5,11 @@ public class CitizenManager : MonoBehaviour
     [SerializeField] private GridManager grid;
     [SerializeField] private CityResources resources;
 
-    [SerializeField] private float minArrivalDelay = 15f;
-    [SerializeField] private float maxArrivalDelay = 30f;
+    [SerializeField] private float ArrivalDelay = 15f;
 
-    [SerializeField] private int moneyPerCitizen = 100;
     [SerializeField] private float incomeInterval = 10f;
 
     private float nextIncomeTime;
-
-    private void OnValidate()
-    {
-        minArrivalDelay = Mathf.Max(0f, minArrivalDelay);
-        maxArrivalDelay = Mathf.Max(minArrivalDelay, maxArrivalDelay);
-        incomeInterval = Mathf.Max(0.1f, incomeInterval);
-    }
 
     private void Start()
     {
@@ -32,11 +23,14 @@ public class CitizenManager : MonoBehaviour
 
         foreach (GridCell cell in grid.Cells)
         {
-            if (!cell.IsOccupied) continue;
+            Building building = cell.Building;
+            if (building == null) continue;
 
-            UpdateArrivals(cell);
-            population += cell.Citizens;
-            maxPopulation += cell.BuildingData.GetCapacity(cell.Level);
+            maxPopulation += building.GetCapacity();
+            if (building.Habitation == null) continue;
+
+            UpdateArrivals(building);
+            population += building.Habitation.Citizens;
         }
 
         resources.SetPopulation(population, maxPopulation);
@@ -44,29 +38,79 @@ public class CitizenManager : MonoBehaviour
         if (Time.time >= nextIncomeTime)
         {
             nextIncomeTime += incomeInterval;
-            resources.AddMoney(population * moneyPerCitizen);
+            resources.AddMoney(CollectIncome());
         }
     }
 
-    private void UpdateArrivals(GridCell cell)
+    private int CollectIncome()
     {
-        if (cell.Citizens >= cell.BuildingData.GetCapacity(cell.Level))
+        GridCell[,] cells = grid.Cells;
+
+        foreach (GridCell cell in cells)
         {
-            cell.NextCitizenTime = 0f;
+            Habitation habitation = GetHabitation(cell);
+            if (habitation != null)
+            {
+                habitation.IncomeBonus = 0;
+            }
+        }
+
+        foreach (GridCell source in cells)
+        {
+            if (source.Building == null || source.Building.Enviro == null) continue;
+
+            BuildingEnviro enviro = source.Building.Enviro;
+            for (int dx = -enviro.Radius; dx <= enviro.Radius; dx++)
+            {
+                for (int dz = -enviro.Radius; dz <= enviro.Radius; dz++)
+                {
+                    GridCell target = grid.GetCell(source.Coordinates + new Vector2Int(dx, dz));
+                    Habitation habitation = GetHabitation(target);
+                    if (habitation != null)
+                    {
+                        habitation.IncomeBonus += enviro.IncomeBonusPerCitizen;
+                    }
+                }
+            }
+        }
+
+        int income = 0;
+        foreach (GridCell cell in cells)
+        {
+            Habitation habitation = GetHabitation(cell);
+            if (habitation == null) continue;
+
+            income += habitation.Citizens * (cell.Building.Data.incomePerCitizen + habitation.IncomeBonus);
+        }
+        return income;
+    }
+
+    private static Habitation GetHabitation(GridCell cell)
+    {
+        return cell != null && cell.Building != null ? cell.Building.Habitation : null;
+    }
+
+    private void UpdateArrivals(Building building)
+    {
+        Habitation habitation = building.Habitation;
+
+        if (habitation.Citizens >= building.GetCapacity())
+        {
+            habitation.NextCitizenTime = 0f;
             return;
         }
 
         // 0 = pas encore programmé : maison neuve, citoyen tout juste arrivé, ou maison qui vient de gagner de la place.
-        if (cell.NextCitizenTime == 0f)
+        if (habitation.NextCitizenTime == 0f)
         {
-            cell.NextCitizenTime = Time.time + Random.Range(minArrivalDelay, maxArrivalDelay);
+            habitation.NextCitizenTime = Time.time + ArrivalDelay;
             return;
         }
 
-        if (Time.time >= cell.NextCitizenTime)
+        if (Time.time >= habitation.NextCitizenTime)
         {
-            cell.Citizens++;
-            cell.NextCitizenTime = 0f;
+            habitation.Citizens++;
+            habitation.NextCitizenTime = 0f;
         }
     }
 }
