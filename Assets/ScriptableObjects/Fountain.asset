@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BuildingData
   displayName: Foutain
   icon: {fileID: 21300000, guid: da997c3881d62e743a5d765538439230, type: 3}
-  prefab: {fileID: 8919437522477240705, guid: e1ba0dcb688b0b24ca5dbb4070cee5bf, type: 3}
+  prefab: {fileID: 7000000000000000003, guid: e1ba0dcb688b0b24ca5dbb4070cee5bf, type: 3}
   cost: 500
   capacity: 0
+  incomePerCitizen: 0
   upgrades: []
