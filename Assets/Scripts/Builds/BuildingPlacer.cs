@@ -5,6 +5,8 @@ public class BuildingPlacer : MonoBehaviour
     [SerializeField] private GridManager grid;
     [SerializeField] private CityRessources ressources;
     [SerializeField] private ConstructionBar constructionBar;
+    [SerializeField] private Transform cameraTransform;
+    [SerializeField] private Transform buildingsParent;
 
     private BuildingData selected;
     private Vector2 mousePosition;
@@ -15,6 +17,7 @@ public class BuildingPlacer : MonoBehaviour
         InputPlayer.OnMousePosition += SetMousePosition;
         InputPlayer.OnChoose += Place;
         InputPlayer.OnCancel += DestroyOrCancel;
+        InputPlayer.OnUpgrade += UpgradeHovered;
     }
 
     private void OnDisable()
@@ -23,6 +26,7 @@ public class BuildingPlacer : MonoBehaviour
         InputPlayer.OnMousePosition -= SetMousePosition;
         InputPlayer.OnChoose -= Place;
         InputPlayer.OnCancel -= DestroyOrCancel;
+        InputPlayer.OnUpgrade -= UpgradeHovered;
     }
 
     private void SetSelected(BuildingData building)
@@ -46,22 +50,65 @@ public class BuildingPlacer : MonoBehaviour
             return;
         }
 
-        GameObject building = Instantiate(selected.prefab, cell.Center, Quaternion.identity);
+        GameObject building = Instantiate(selected.prefab, cell.Center, FacingCamera(), buildingsParent);
         grid.Occupy(cell, building, selected);
+    }
+
+    private void UpgradeHovered()
+    {
+        GridCell cell = grid.HoveredCell;
+        
+        if (cell != null && cell.IsOccupied)
+        {
+            Upgrade(cell);
+        }
+    }
+
+    private void Upgrade(GridCell cell)
+    {
+        BuildingData data = cell.BuildingData;
+
+        if (cell.Level - 1 >= data.upgrades.Count)
+        {
+            return;
+        }
+
+        BuildingUpgrade upgrade = data.upgrades[cell.Level - 1];
+        
+        if (!ressources.TrySpend(upgrade.cost))
+        {
+            return;
+        }
+
+        cell.Level++;
+        cell.TotalSpent += upgrade.cost;
+
+        if (upgrade.prefab == null) return;
+        
+        Destroy(cell.Building);
+        cell.Building = Instantiate(upgrade.prefab, cell.Center, FacingCamera(), buildingsParent);
+    }
+
+    private Quaternion FacingCamera()
+    {
+        float yawToCamera = cameraTransform.eulerAngles.y + 180f;
+        return Quaternion.Euler(0f, Mathf.Round(yawToCamera / 90f) * 90f, 0f);
     }
 
     private void DestroyOrCancel()
     {
-        GridCell cell = grid.HoveredCell;
-
-        if (cell != null && cell.IsOccupied && !constructionBar.IsPointerOverBar(mousePosition))
+        if (selected != null)
         {
-            ressources.AddMoney(cell.BuildingData.cost / 2);
-            Destroy(cell.Building);
-            grid.Free(cell);
+            constructionBar.ClearSelection();
             return;
         }
 
-        constructionBar.ClearSelection();
+        GridCell cell = grid.HoveredCell;
+
+        if (cell == null || !cell.IsOccupied || constructionBar.IsPointerOverBar(mousePosition)) return;
+        
+        ressources.AddMoney(cell.TotalSpent / 2);
+        Destroy(cell.Building);
+        grid.Free(cell);
     }
 }

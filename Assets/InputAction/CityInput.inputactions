@@ -55,6 +55,16 @@
                     "interactions": "",
                     "initialStateCheck": true,
                     "priority": 0
+                },
+                {
+                    "name": "Upgrade",
+                    "type": "Button",
+                    "id": "9c4e2b7d-1a3f-4e6b-8d2c-5f7a9b1c3e4d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
                 }
             ],
             "bindings": [
@@ -176,6 +186,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Mouse",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2d8f6a1b-7c3e-4b9a-a5d1-0e4f8c2b6a7d",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Upgrade",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
