@@ -1,0 +1,7 @@
+MVP:
+système d'habitation avec nv 
+système d'environnement qui influe sur le prix des habitations
+
+En + : 
+système de route
+Plus il y de route + les maisons rapportent de l'argent
