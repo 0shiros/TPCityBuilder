@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BuildingData
   displayName: SimpleHouse
   icon: {fileID: 21300000, guid: 84146d52ed7edfa4395cc9a25a9d4d00, type: 3}
-  prefab: {fileID: 8919437522477240705, guid: ce8b3286cbb454a47af8f69eb9c5e9dd, type: 3}
+  prefab: {fileID: 7000000000000000002, guid: ce8b3286cbb454a47af8f69eb9c5e9dd, type: 3}
   cost: 200
   capacity: 4
   incomePerCitizen: 100
