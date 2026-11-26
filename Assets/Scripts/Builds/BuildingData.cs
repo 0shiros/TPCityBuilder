@@ -23,4 +23,9 @@ public class BuildingData : ScriptableObject
 
     [Tooltip("Niveaux 2 et suivants. Vide = le bâtiment n'évolue pas.")]
     public List<BuildingUpgrade> upgrades = new();
+
+    public int GetCapacity(int level)
+    {
+        return level <= 1 ? capacity : upgrades[level - 2].capacity;
+    }
 }

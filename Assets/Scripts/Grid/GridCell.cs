@@ -8,6 +8,8 @@ public class GridCell
     public BuildingData BuildingData { get; set; }
     public int Level { get; set; }
     public int TotalSpent { get; set; }
+    public int Citizens { get; set; }
+    public float NextCitizenTime { get; set; }
     public bool IsOccupied => Building != null;
 
     public GridCell(Vector2Int coordinates, Vector3 center)

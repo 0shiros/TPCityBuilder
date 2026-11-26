@@ -13,6 +13,7 @@ public class GridManager : MonoBehaviour
     [SerializeField] private Color hoverColor = Color.yellow;
 
     public GridCell HoveredCell { get; private set; }
+    public GridCell[,] Cells => cells;
 
     private GridCell[,] cells;
     private Vector3 origin;
@@ -96,6 +97,8 @@ public class GridManager : MonoBehaviour
         cell.BuildingData = null;
         cell.Level = 0;
         cell.TotalSpent = 0;
+        cell.Citizens = 0;
+        cell.NextCitizenTime = 0f;
     }
 
     private void ClampGridSize()
