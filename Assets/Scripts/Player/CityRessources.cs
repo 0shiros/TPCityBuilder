@@ -18,6 +18,19 @@ public class CityRessources : MonoBehaviour
     
     [SerializeField] private CurrentSpeed currentSpeed;
     
+    public bool TrySpend(int amount)
+    {
+        if (money < amount) return false;
+
+        money -= amount;
+        return true;
+    }
+
+    public void AddMoney(int amount)
+    {
+        money = Mathf.Min(money + amount, maxMoney);
+    }
+
     private void UpdateSpeedGame()
     {
         Time.timeScale = (int)currentSpeed;
