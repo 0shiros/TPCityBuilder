@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5739031939602445448}
   - component: {fileID: 2400835862387873473}
   m_Layer: 0
-  m_Name: MediumAppart
+  m_Name: Habitation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40,7 +40,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8919437522477240705}
-  m_Mesh: {fileID: 4300000, guid: 33ab114a7e985694786338b2a45e05d4, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 3730d81049e7cb94abfe44a386f842cc, type: 3}
 --- !u!23 &2400835862387873473
 MeshRenderer:
   m_ObjectHideFlags: 0

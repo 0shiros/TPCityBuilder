@@ -83,10 +83,9 @@ public class BuildingPlacer : MonoBehaviour
         cell.Level++;
         cell.TotalSpent += upgrade.cost;
 
-        if (upgrade.prefab == null) return;
+        if (upgrade.mesh == null) return;
         
-        Destroy(cell.Building);
-        cell.Building = Instantiate(upgrade.prefab, cell.Center, FacingCamera(), buildingsParent);
+        cell.Building.GetComponent<MeshFilter>().mesh = upgrade.mesh;
     }
 
     private Quaternion FacingCamera()
