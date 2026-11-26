@@ -1195,6 +1195,7 @@ MonoBehaviour:
   ressources: {fileID: 1842388684}
   constructionBar: {fileID: 2000000004}
   cameraTransform: {fileID: 330585546}
+  buildingsParent: {fileID: 165725872}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

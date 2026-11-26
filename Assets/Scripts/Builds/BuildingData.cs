@@ -8,7 +8,7 @@ public class BuildingUpgrade
     public int cost;
     public int capacity;
     [Tooltip("Facultatif : vide = on garde le modèle actuel.")]
-    public GameObject prefab;
+    public Mesh mesh;
 }
 
 [CreateAssetMenu(fileName = "NewBuilding", menuName = "City/Building")]

@@ -20,13 +20,13 @@ MonoBehaviour:
   upgrades:
   - cost: 1000
     capacity: 10
-    prefab: {fileID: 8919437522477240705, guid: 11b2addbe9a97414b8acfe753f0d58ba, type: 3}
+    mesh: {fileID: 4300000, guid: 994bf8a1bfea5e94bbc2e57ffd9c6236, type: 3}
   - cost: 2500
     capacity: 20
-    prefab: {fileID: 8919437522477240705, guid: 95825c5cf0d7e2b42ba75a9a642e5f10, type: 3}
+    mesh: {fileID: 4300000, guid: 1c88fb85b654f904097f0b9aca7424d1, type: 3}
   - cost: 5000
     capacity: 50
-    prefab: {fileID: 8919437522477240705, guid: 93c4e75abc6ad5240834bc071f131ab6, type: 3}
+    mesh: {fileID: 4300000, guid: 33ab114a7e985694786338b2a45e05d4, type: 3}
   - cost: 12500
     capacity: 100
-    prefab: {fileID: 8919437522477240705, guid: 2d987fb054bb1a642ba994fcd59a5d76, type: 3}
+    mesh: {fileID: 4300000, guid: 1116df919725f4b4ab47f8b4ba0f6562, type: 3}
