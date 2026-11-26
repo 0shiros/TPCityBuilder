@@ -9,7 +9,7 @@ public enum CurrentSpeed
 }
 
 
-public class CityRessources : MonoBehaviour
+public class CityResources : MonoBehaviour
 {
     [SerializeField] private int population;
     [Tooltip("Calculé : somme des capacités des maisons.")]

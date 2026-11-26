@@ -3,7 +3,7 @@ using UnityEngine;
 public class BuildingPlacer : MonoBehaviour
 {
     [SerializeField] private GridManager grid;
-    [SerializeField] private CityRessources ressources;
+    [SerializeField] private CityResources resources;
     [SerializeField] private ConstructionBar constructionBar;
     [SerializeField] private Transform cameraTransform;
     [SerializeField] private Transform buildingsParent;
@@ -44,7 +44,7 @@ public class BuildingPlacer : MonoBehaviour
         GridCell cell = grid.HoveredCell;
         if (selected == null || constructionBar.IsPointerOverBar(mousePosition) || !grid.IsFree(cell)) return;
 
-        if (!ressources.TrySpend(selected.cost))
+        if (!resources.TrySpend(selected.cost))
         {
             Debug.Log($"Pas assez d'argent pour {selected.displayName} ({selected.cost} $).");
             return;
@@ -75,7 +75,7 @@ public class BuildingPlacer : MonoBehaviour
 
         BuildingUpgrade upgrade = data.upgrades[cell.Level - 1];
         
-        if (!ressources.TrySpend(upgrade.cost))
+        if (!resources.TrySpend(upgrade.cost))
         {
             return;
         }
@@ -106,7 +106,7 @@ public class BuildingPlacer : MonoBehaviour
 
         if (cell == null || !cell.IsOccupied || constructionBar.IsPointerOverBar(mousePosition)) return;
         
-        ressources.AddMoney(cell.TotalSpent / 2);
+        resources.AddMoney(cell.TotalSpent / 2);
         Destroy(cell.Building);
         grid.Free(cell);
     }

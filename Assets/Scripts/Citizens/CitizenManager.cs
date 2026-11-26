@@ -3,7 +3,7 @@ using UnityEngine;
 public class CitizenManager : MonoBehaviour
 {
     [SerializeField] private GridManager grid;
-    [SerializeField] private CityRessources ressources;
+    [SerializeField] private CityResources resources;
 
     [SerializeField] private float minArrivalDelay = 15f;
     [SerializeField] private float maxArrivalDelay = 30f;
@@ -28,6 +28,7 @@ public class CitizenManager : MonoBehaviour
     private void Update()
     {
         int population = 0;
+        int maxPopulation = 0;
 
         foreach (GridCell cell in grid.Cells)
         {
@@ -35,14 +36,15 @@ public class CitizenManager : MonoBehaviour
 
             UpdateArrivals(cell);
             population += cell.Citizens;
+            maxPopulation += cell.BuildingData.GetCapacity(cell.Level);
         }
 
-        ressources.SetPopulation(population);
+        resources.SetPopulation(population, maxPopulation);
 
         if (Time.time >= nextIncomeTime)
         {
             nextIncomeTime += incomeInterval;
-            ressources.AddMoney(population * moneyPerCitizen);
+            resources.AddMoney(population * moneyPerCitizen);
         }
     }
 

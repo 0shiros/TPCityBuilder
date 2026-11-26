@@ -1,0 +1,9 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="ResourcesHUD.uss"/>
+    <ui:VisualElement name="root" class="hud-root" picking-mode="Ignore">
+        <ui:VisualElement class="hud" picking-mode="Ignore">
+            <ui:Label name="money" text="Argent : 0" class="hud-label" picking-mode="Ignore"/>
+            <ui:Label name="population" text="Nombre d'habitants : 0/0" class="hud-label" picking-mode="Ignore"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
