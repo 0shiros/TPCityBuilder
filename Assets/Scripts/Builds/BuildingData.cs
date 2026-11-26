@@ -4,6 +4,7 @@ using UnityEngine;
 public class BuildingData : ScriptableObject
 {
     public string displayName;
+    public Sprite icon;
     public GameObject prefab;
     public int cost;
     public int capacity;

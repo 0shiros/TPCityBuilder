@@ -27,10 +27,20 @@
                     "priority": 0
                 },
                 {
-                    "name": "Choose&Create/Cancel",
+                    "name": "Choose",
                     "type": "Button",
                     "id": "ee036d9e-3c72-461e-80a0-5b0a3a52b15c",
                     "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
+                    "name": "Cancel",
+                    "type": "Button",
+                    "id": "5b1f0c7a-2e4d-4c8b-9a6e-7d3f1e2a4b6c",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false,
@@ -143,7 +153,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Choose&Create/Cancel",
+                    "action": "Choose",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -154,7 +164,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Choose&Create/Cancel",
+                    "action": "Cancel",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
