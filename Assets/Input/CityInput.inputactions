@@ -35,6 +35,16 @@
                     "interactions": "",
                     "initialStateCheck": false,
                     "priority": 0
+                },
+                {
+                    "name": "Mouse",
+                    "type": "Value",
+                    "id": "3282bf6e-648f-4e41-96b0-f4d78e7210f1",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true,
+                    "priority": 0
                 }
             ],
             "bindings": [
@@ -52,7 +62,7 @@
                 {
                     "name": "up",
                     "id": "5dd27660-0b2d-4a41-b881-2530563ff683",
-                    "path": "<Keyboard>/z",
+                    "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -94,18 +104,18 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "",
-                    "id": "ac2503f1-7948-4764-9491-33bb15f58052",
-                    "path": "<Mouse>/scroll/up",
+                    "name": "1D Axis",
+                    "id": "3f6b1c2e-8a4d-4e7b-9c1a-2d5e6f7a8b9c",
+                    "path": "1DAxis",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Zoom",
-                    "isComposite": false,
+                    "isComposite": true,
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "",
+                    "name": "negative",
                     "id": "7bd48a67-e52a-431a-8830-b66390060015",
                     "path": "<Mouse>/scroll/down",
                     "interactions": "",
@@ -113,7 +123,18 @@
                     "groups": "",
                     "action": "Zoom",
                     "isComposite": false,
-                    "isPartOfComposite": false
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "ac2503f1-7948-4764-9491-33bb15f58052",
+                    "path": "<Mouse>/scroll/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Zoom",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 },
                 {
                     "name": "",
@@ -134,6 +155,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Choose&Create/Cancel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "06941fd8-50c6-4107-824b-3a40e788fc32",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Mouse",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

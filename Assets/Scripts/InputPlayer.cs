@@ -4,10 +4,9 @@ using UnityEngine.InputSystem;
 
 public class InputPlayer : MonoBehaviour
 {
-    [SerializeField] private InputAction inputAction;
-    
     public static Action<Vector3> OnMove;
     public static Action<float> OnZoom;
+    public static Action<Vector2> OnMousePosition;
     public static Action OnChoose;
     public static Action OnCancel;
     
@@ -18,9 +17,17 @@ public class InputPlayer : MonoBehaviour
     
     public void Zoom(InputAction.CallbackContext context)
     {
-        OnZoom?.Invoke(context.ReadValue<float>());
+        if (context.performed)
+        {
+            OnZoom?.Invoke(context.ReadValue<float>());
+        }
     }
     
+    public void MousePosition(InputAction.CallbackContext context)
+    {
+        OnMousePosition?.Invoke(context.ReadValue<Vector2>());
+    }
+
     public void Choose(InputAction.CallbackContext context)
     {
         if (context.started)
