@@ -78,6 +78,7 @@ public class BuildingPlacer : MonoBehaviour
 
         if (!resources.TrySpend(upgrade.cost))
         {
+            Debug.Log($"Pas assez d'argent pour améliorer {building.Data.displayName} (niveau {building.Level + 1}, {upgrade.cost} $).");
             return;
         }
 

@@ -100,7 +100,6 @@ public class CitizenManager : MonoBehaviour
             return;
         }
 
-        // 0 = pas encore programmé : maison neuve, citoyen tout juste arrivé, ou maison qui vient de gagner de la place.
         if (habitation.NextCitizenTime == 0f)
         {
             habitation.NextCitizenTime = Time.time + ArrivalDelay;
