@@ -9,6 +9,7 @@ public class InputPlayer : MonoBehaviour
     public static Action<Vector2> OnMousePosition;
     public static Action OnChoose;
     public static Action OnCancel;
+    public static Action OnUpgrade;
     
     public void Move(InputAction.CallbackContext context)
     {
@@ -41,6 +42,14 @@ public class InputPlayer : MonoBehaviour
         if (context.performed)
         {
             OnCancel?.Invoke();
+        }
+    }
+
+    public void Upgrade(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            OnUpgrade?.Invoke();
         }
     }
 }

@@ -86,12 +86,16 @@ public class GridManager : MonoBehaviour
     {
         cell.Building = building;
         cell.BuildingData = data;
+        cell.Level = 1;
+        cell.TotalSpent = data.cost;
     }
 
     public void Free(GridCell cell)
     {
         cell.Building = null;
         cell.BuildingData = null;
+        cell.Level = 0;
+        cell.TotalSpent = 0;
     }
 
     private void ClampGridSize()
