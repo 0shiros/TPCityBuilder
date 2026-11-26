@@ -1,0 +1,36 @@
+.root {
+    flex-grow: 1;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.bar {
+    flex-direction: row;
+    margin-bottom: 10px;
+    padding: 6px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 6px;
+}
+
+.building-button {
+    width: 90px;
+    height: 110px;
+    padding: 4px;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.building-icon {
+    width: 80px;
+    height: 60px;
+    -unity-background-scale-mode: scale-to-fit;
+}
+
+.building-button Label {
+    -unity-text-align: middle-center;
+    font-size: 12px;
+}
+
+.building-button--selected {
+    background-color: rgb(80, 160, 80);
+}
