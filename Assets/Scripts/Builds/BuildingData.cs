@@ -16,10 +16,13 @@ public class BuildingData : ScriptableObject
 {
     public string displayName;
     public Sprite icon;
-    public GameObject prefab;
+    [Tooltip("Prefab avec un composant Building sur sa racine.")]
+    public Building prefab;
     public int cost;
     [Tooltip("0 = pas de capacité.")]
     public int capacity;
+    [Tooltip("Revenu de base par habitant, à chaque versement.")]
+    public int incomePerCitizen;
 
     [Tooltip("Niveaux 2 et suivants. Vide = le bâtiment n'évolue pas.")]
     public List<BuildingUpgrade> upgrades = new();

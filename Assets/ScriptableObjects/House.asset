@@ -17,6 +17,7 @@ MonoBehaviour:
   prefab: {fileID: 8919437522477240705, guid: ce8b3286cbb454a47af8f69eb9c5e9dd, type: 3}
   cost: 200
   capacity: 4
+  incomePerCitizen: 100
   upgrades:
   - cost: 1000
     capacity: 10

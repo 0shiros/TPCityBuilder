@@ -83,22 +83,14 @@ public class GridManager : MonoBehaviour
         return cell != null && !cell.IsOccupied;
     }
 
-    public void Occupy(GridCell cell, GameObject building, BuildingData data)
+    public void Occupy(GridCell cell, Building building)
     {
         cell.Building = building;
-        cell.BuildingData = data;
-        cell.Level = 1;
-        cell.TotalSpent = data.cost;
     }
 
     public void Free(GridCell cell)
     {
         cell.Building = null;
-        cell.BuildingData = null;
-        cell.Level = 0;
-        cell.TotalSpent = 0;
-        cell.Citizens = 0;
-        cell.NextCitizenTime = 0f;
     }
 
     private void ClampGridSize()
